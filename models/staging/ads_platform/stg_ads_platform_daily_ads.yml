@@ -3,32 +3,32 @@ models:
     description: "The daily ad campaigns table."
     columns:
       - name: date
-        description: "The calendar date of the campaign reporting period."
+        description: '{{ doc("ads_platform_daily_ads_date") }}'
         tests:
           - not_null
 
       - name: campaign_id
-        description: The unique identifier for the campaign.
+        description: '{{ doc("ads_platform_daily_ads_campaign_id") }}'
         tests:
           - not_null
 
       - name: surrogate_key
-        description: The surrogate key.
+        description: '{{ doc("ads_platform_daily_ads_surrogate_key") }}'
         tests:
           - not_null
           - unique
 
       - name: spend
-        description: The amount spent on the campaign.
+        description: '{{ doc("ads_platform_daily_ads_spend") }}'
         tests:
           - not_null
 
       - name: cpm
-        description: "The cost charged by the ads platform per thousand impressions."
+        description: '{{ doc("ads_platform_daily_ads_cpm") }}'
         tests:
           - not_null
 
       - name: ctr
-        description: "The click through rate on the campaign impressions."
+        description: '{{ doc("ads_platform_daily_ads_ctr") }}'
         tests:
           - not_null
