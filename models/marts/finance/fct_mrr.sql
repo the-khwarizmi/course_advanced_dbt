@@ -12,8 +12,8 @@ monthly_subscriptions AS (
         ends_at,
         plan_name,
         pricing,
-        DATE(DATE_TRUNC('month', starts_at)) AS start_month,
-        DATE(DATE_TRUNC('month', ends_at)) AS end_month
+        {{ date_part('starts_at', 'month') }} AS start_month,
+        {{ date_part('ends_at', 'month') }} AS end_month
     FROM
         {{ ref('dim_subscriptions') }}
     WHERE
@@ -158,7 +158,10 @@ mrr_with_changes AS (
             0.0
         ) AS previous_month_mrr_amount,
 
-        mrr - previous_month_mrr_amount AS mrr_change
+        mrr - previous_month_mrr_amount AS mrr_change,
+        {{ rolling_agg_n_periods('mrr', 'subscription_id', 'date_month', 'avg', 12) }} AS subscription_mrr_12_month_rolling_avg,
+        {{ rolling_agg_n_periods('mrr', 'user_id', 'date_month', 'avg', 12) }} AS user_mrr_12_month_rolling_avg
+
     FROM
         unioned
 ),
@@ -176,6 +179,8 @@ final AS (
         mrr_change,
         LEAST(mrr, previous_month_mrr_amount) AS retained_mrr_amount,
         previous_month_mrr_amount,
+        subscription_mrr_12_month_rolling_avg,
+        user_mrr_12_month_rolling_avg,
 
         CASE
             WHEN is_first_subscription_month THEN 'new'

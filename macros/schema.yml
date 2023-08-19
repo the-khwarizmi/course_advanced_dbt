@@ -1,0 +1,31 @@
+version: 2
+
+macros:
+  - name: rolling_agg_n_periods
+    description: A macro that applies an aggregation function over a window of size n
+    arguments:
+      - name: column_name
+        type: string
+        description: The name of the column to aggregate.
+      - name: partition_by
+        type: string
+        description: The name of the column to partition by.
+      - name: order_by
+        type: string
+        description: The name of the column to order by.
+      - name: agg_func
+        type: string
+        description: The aggrgation function to be applied. Defaults to 'avg'.
+      - name: n
+        type: integer
+        description: The size of the aggregation window. Defaults to 7.
+
+  - name: date_part
+    description: A macro that truncates a date or timestamp column to the specified level of precision and then casts it as a date.
+    arguments:
+      - name: column_name
+        type: string
+        description: The column name containing the date or timestamp to be truncated.
+      - name: datepart
+        type: string
+        description: The level of precision to which you want to truncate the date or timestamp (e.g., 'year', 'quarter', 'month', etc.). Defaults to 'month'.

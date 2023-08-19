@@ -71,3 +71,13 @@ models:
         description: Where the user lives.
         tests:
           - not_null
+
+      - name: first_subscription_starts_at
+        description: '{{ doc("core_users_first_subscription_starts_at") }}'
+        tests:
+          - not_null
+
+      - name: count_of_subscriptions
+        description: '{{ doc("core_users_count_of_subscriptions") }}'
+        tests:
+          - not_null

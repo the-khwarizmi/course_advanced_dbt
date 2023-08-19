@@ -24,7 +24,7 @@ This issue was raised because **mr** model did not have the proper prefix in its
 | RESOURCE_NAME | MODEL_TYPE |
 | ------------- | ---------- |
 | fct_events    | marts      |
-**Solution:**  Add proper documentation to fct_events. 
+**Solution:**  Add proper documentation to fct_events.
 
 
 ## is_empty_fct_model_directories_

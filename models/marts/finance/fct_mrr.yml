@@ -43,3 +43,9 @@ models:
 
       - name: month_retained_number
         description: The number of months the subscription has been retained since it was started (first month = 0).
+
+      - name: subscription_mrr_12_month_rolling_avg
+        description: The average Monthly Recurring Revenue (MRR) from subscriptions, calculated over a rolling 12-month period.
+
+      - name: user_mrr_12_month_rolling_avg
+        description: The average Monthly Recurring Revenue (MRR) per user, calculated over a rolling 12-month period.
